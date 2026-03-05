@@ -32,7 +32,7 @@ public class ContactController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromForm] ContactCreateRequest contactCreateRequest, CancellationToken ct)
     {
-        var cmd = await createContactCommandFactory.ReadContentAsync(contactCreateRequest, ct);
+        var cmd = await createContactCommandFactory.ReadContentAsync(Request, contactCreateRequest, ct);
         var result = await createContactHandler.ExecuteAsync(cmd, ct);
 
         return StatusCode(StatusCodes.Status201Created, new CreateContactResponse(result.affectedCount));
