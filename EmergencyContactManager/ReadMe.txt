@@ -10,5 +10,6 @@ dotnet ef migrations add InitialCreate --project infrastructure --startup-projec
 
 
 개발 환경 : Visual Studio 2026
+프로젝트 : Blazor
 DB : PostgreSQL
 OpenAPI : https://{ip}:{port}/swagger/
