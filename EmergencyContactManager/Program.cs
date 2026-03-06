@@ -20,9 +20,6 @@ builder.Services.AddRazorComponents()
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DBContext>(options =>
     options.UseNpgsql(connectionString));
-//dotnet ef migrations add InitialCreate --project infrastructure --startup-project EmergencyContactManager
-//dotnet ef database update
-//dotnet ef database drop --project Infrastructure --startup-project EmergencyContactManager --force
 
 builder.Services.AddScoped<IApplicationTransaction, ApplicationTransaction>();
 builder.Services.AddScoped<ICreateContactCommandFactory, CreateContactCommandFactory>();
