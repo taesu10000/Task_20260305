@@ -6,6 +6,7 @@ using EmergencyContactManager.Factories;
 using EmergencyContactManager.Models.Request;
 using EmergencyContactManager.Models.Response;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 [ApiController]
 [Route("api/employee")]
@@ -49,7 +50,7 @@ public class ContactController : ControllerBase
     {
         var result = await getContactHandler.ExecuteAsync(name);
 
-        return Ok(result.Select(r => new GetContactResponse(Name: r.Name, Email: r.Email, Tel: r.Tel)).ToList());
+        return Ok(new GetContactListResponse(Count: result.Count, result.Select(r => new GetContactResponse(Name: r.Name, Email: r.Email, Tel: r.Tel)).ToList()));
     }
     [HttpGet]
     public async Task<IActionResult> GetAsync([FromQuery] int page, int pageSize, CancellationToken ct)
@@ -57,6 +58,6 @@ public class ContactController : ControllerBase
         var query = new SearchContractQuery(page, pageSize);
         var result = await searchContactHandler.ExecuteAsync(query);
 
-        return Ok(result.Select(r => new GetContactResponse(Name: r.Name, Email: r.Email, Tel: r.Tel)).ToList());
+        return Ok(new GetContactListResponse(Count: result.Count, result.Select(r => new GetContactResponse(Name: r.Name, Email: r.Email, Tel: r.Tel)).ToList()));
     }
 }

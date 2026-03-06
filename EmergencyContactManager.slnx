@@ -3,4 +3,5 @@
   <Project Path="Domain/Domain.csproj" />
   <Project Path="EmergencyContactManager/EmergencyContactManager.csproj" />
   <Project Path="Infrastructure/Infrastructure.csproj" />
+  <Project Path="TestProject/TestProject.csproj" Id="6d3ea4b5-4318-4dad-b618-4dda119f4ba3" />
 </Solution>
