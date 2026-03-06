@@ -9,6 +9,7 @@ using Infrastructure.Parsers;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,17 @@ builder.Services.AddScoped<IParsingService, CSVParser>();
 builder.Services.AddScoped<IParsingService, JasonParser>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 DI.AddDI(builder.Services);
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .WriteTo.File(
+        "logs/app-.log",
+        rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
