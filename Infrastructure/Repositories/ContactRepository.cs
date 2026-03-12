@@ -29,12 +29,12 @@ namespace Infrastructure.Repositories
             return await dBContext.Contacts.ExecuteDeleteAsync(ct);
         }
 
-        public async Task<List<Contact>> GetAsnyc(string name, CancellationToken ct = default)
+        public async Task<List<Contact>> GetAsync(string name, CancellationToken ct = default)
         {
             ct.ThrowIfCancellationRequested();
             return await dBContext.Contacts.Where(q => q.name == name).ToListAsync(ct);
         }
-        public async Task<List<Contact>> GetAsnyc(int? page, int? pageSize, CancellationToken ct = default)
+        public async Task<List<Contact>> GetAsync(int? page, int? pageSize, CancellationToken ct = default)
         {
             ct.ThrowIfCancellationRequested();
             var query = dBContext.Contacts.OrderBy(q => q.name)
@@ -56,7 +56,7 @@ namespace Infrastructure.Repositories
             return await query.ToListAsync(ct);
         }
 
-        public async Task<List<Contact>> GetAsnyc(string q, string? name, string? email, string? tel, DateTimeOffset? joined, int? page, int? pageSize, CancellationToken ct = default)
+        public async Task<List<Contact>> GetAsync(string q, string? name, string? email, string? tel, DateTimeOffset? joined, int? page, int? pageSize, CancellationToken ct = default)
         {
             var query = dBContext.Contacts.AsQueryable();
             if (!string.IsNullOrWhiteSpace(q))

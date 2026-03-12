@@ -55,7 +55,7 @@ public class ContactController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAsync([FromQuery] int? page, int? pageSize, CancellationToken ct)
     {
-        var query = new SearchContractQuery(page, pageSize);
+        var query = new SearchContactQuery(page, pageSize);
         var result = await searchContactHandler.ExecuteAsync(query);
 
         return Ok(new GetContactListResponse(Count: result.Count, result.Select(r => new GetContactResponse(Name: r.Name, Email: r.Email, Tel: r.Tel)).ToList()));

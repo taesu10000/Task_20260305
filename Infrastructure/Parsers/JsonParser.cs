@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Infrastructure.Parsers;
 
-public class JasonParser : IParsingService
+public class JsonParser : IParsingService
 {
     public FileType Format { get; } = FileType.JSON;
     public bool CanParse(string content)

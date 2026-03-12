@@ -25,7 +25,7 @@ builder.Services.AddScoped<IApplicationTransaction, ApplicationTransaction>();
 builder.Services.AddScoped<ICreateContactCommandFactory, CreateContactCommandFactory>();
 
 builder.Services.AddScoped<IParsingService, CSVParser>();
-builder.Services.AddScoped<IParsingService, JasonParser>();
+builder.Services.AddScoped<IParsingService, JsonParser>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 DI.AddDI(builder.Services);
 

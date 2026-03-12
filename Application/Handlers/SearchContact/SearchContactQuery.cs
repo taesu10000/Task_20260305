@@ -1,4 +1,4 @@
 ﻿namespace Application.Handlers.SearchContact;
 
-public sealed record SearchContractQuery(int? Page,
+public sealed record SearchContactQuery(int? Page,
                                          int? PageSize);

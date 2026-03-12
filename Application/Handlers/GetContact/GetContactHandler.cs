@@ -11,7 +11,7 @@ namespace Application.Handlers.GetContact
         }
         public async Task<List<GetContactResult>> ExecuteAsync(string name, CancellationToken ct = default)
         {
-            var result = await contactRepository.GetAsnyc(name, ct);
+            var result = await contactRepository.GetAsync(name, ct);
 
             return result.Select(q => new GetContactResult(q.name,
                                                            q.email,
